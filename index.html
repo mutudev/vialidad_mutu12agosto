@@ -198,7 +198,7 @@
         box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
       }
 
-      #videoPlayer::-webkit-media-controls {
+      /*#videoPlayer::-webkit-media-controls {
         display: none !important;
       }
       #videoPlayer::-moz-media-controls {
@@ -206,7 +206,7 @@
       }
       #videoPlayer::-ms-media-controls {
         display: none !important;
-      }
+      }*/
 
       .submit-btn:disabled {
         opacity: 0.6;
@@ -454,7 +454,7 @@
 
       <div class="form-container" id="formContainer">
         <h2 class="form-title">
-          ¡Comparte tu opinión! (Limitado a 250 Participantes)
+          ¡Comparte tu opinión! (Limitado a 1 Por Persona)
         </h2>
         <form id="responseForm">
           <div class="form-group">
@@ -718,11 +718,11 @@
 
           if (countError) throw countError;
 
-          if (count >= 250) {
+          if (count >= 10000) {
             showMessage(
               "error",
               "🚫 Límite Alcanzado",
-              "El límite de 250 registros ha sido alcanzado.<br><br>Ya no se pueden registrar más participantes en esta campaña.<br><br>¡Gracias por tu interés!"
+              "El límite de 10000 registros ha sido alcanzado.<br><br>Ya no se pueden registrar más participantes en esta campaña.<br><br>¡Gracias por tu interés!"
             );
             return;
           }
