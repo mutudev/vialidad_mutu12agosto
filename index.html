@@ -198,7 +198,7 @@
         box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
       }
 
-      #videoPlayer::-webkit-media-controls {
+      /*#videoPlayer::-webkit-media-controls {
         display: none !important;
       }
       #videoPlayer::-moz-media-controls {
@@ -206,7 +206,7 @@
       }
       #videoPlayer::-ms-media-controls {
         display: none !important;
-      }
+      }*/
 
       .submit-btn:disabled {
         opacity: 0.6;
@@ -434,12 +434,13 @@
   <body>
     <div class="container">
       <!-- Contenedor del Video -->
+          <!-- disablepictureinpicture -->
+       <!-- controlslist="nodownload noremoteplayback noplaybackrate nofullscreen" -->
       <div class="video-container">
         <video
           id="videoPlayer"
           playsinline
-          disablepictureinpicture
-          controlslist="nodownload noremoteplayback noplaybackrate nofullscreen"
+          
         >
           <source src="EDUCACIÓN VIAL.mp4" type="video/mp4" />
           Tu navegador no soporta el elemento video.
@@ -754,20 +755,18 @@
             submissionId === currentSubmissionId
           ) {
             try {
-              const { data, error } = await supabasePublicCliente
-                .from("campaña")
-                .insert([
-                  {
-                    respuesta: respuesta,
-                    visitanteId: visitanteId,
-                  },
-                ])
-                .select("id")
-                .single();
+              const { data, error } = await supabasePublicCliente.rpc(
+                "insertar_datos_camp",
+                {
+                  p_respuesta: respuesta,
+                  p_visitanteid: visitanteId,
+                }
+              );
 
               if (error) throw error;
 
-              insertData = data;
+              // Supabase devuelve el valor directo
+              insertData = data[0];
               insertSuccess = true;
             } catch (error) {
               retryCount++;
@@ -796,7 +795,7 @@
             return;
           }
 
-          const insertedId = insertData.id;
+          const insertedId = insertData.folio;
 
           if (isShare) {
             // Copiar el enlace del video al portapapeles
@@ -813,7 +812,7 @@
             // Mensaje completo con información del premio
             const successContent = `
                         <div class="registration-id">
-                            ID de Registro: ${insertedId}
+                            FOLIO de Registro: FOL-${insertedId}
                         </div>
                         <p><strong>¡Registro exitoso!</strong></p>
                         <p>El enlace del video ya fue copiado. ¡Compártelo!</p>
