@@ -198,7 +198,7 @@
         box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
       }
 
-      /*#videoPlayer::-webkit-media-controls {
+      #videoPlayer::-webkit-media-controls {
         display: none !important;
       }
       #videoPlayer::-moz-media-controls {
@@ -206,7 +206,7 @@
       }
       #videoPlayer::-ms-media-controls {
         display: none !important;
-      }*/
+      }
 
       .submit-btn:disabled {
         opacity: 0.6;
@@ -718,11 +718,11 @@
 
           if (countError) throw countError;
 
-          if (count >= 10000) {
+          if (count >= 100) {
             showMessage(
               "error",
               "🚫 Límite Alcanzado",
-              "El límite de 10000 registros ha sido alcanzado.<br><br>Ya no se pueden registrar más participantes en esta campaña.<br><br>¡Gracias por tu interés!"
+              "El límite de 100 registros ha sido alcanzado.<br><br>Ya no se pueden registrar más participantes en esta campaña.<br><br>¡Gracias por tu interés!"
             );
             return;
           }
